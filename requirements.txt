@@ -1,3 +1,5 @@
-streamlit==1.51.0
-pandas==2.3.3
-matplotlib==3.10.6
+fastapi==0.95.2
+uvicorn[standard]==0.22.0
+pandas==2.2.2
+pytest==7.4.0
+httpx==0.24.1

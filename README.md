@@ -1,34 +1,28 @@
-# Pulse Sales Analytics
+# Sales Dashboard - App Feature
 
-A professional local sales dashboard for exploring revenue, profit, targets, category performance, and product leaders. It runs in your browser but stays on your computer; uploaded CSV data is not sent anywhere.
+This branch adds a small FastAPI app and a digital world clock feature.
 
-## Windows application
+Endpoints added:
+- GET /health — simple health check
+- GET /metrics — sample aggregation from data/sample_sales.csv
+- GET /clock — HTML page that displays current time in multiple time zones
 
-For everyday use, open `release/Pulse Sales Analytics/Pulse Sales Analytics.exe`. No Python installation is required. Keep the files in that release folder together when moving the app to another Windows computer.
+How to run locally:
 
-## Run from source (developers)
+1. Create a virtualenv and install requirements:
 
-1. Install **Python 3.10 or newer** from [python.org](https://www.python.org/downloads/). During installation, select **Add Python to PATH**.
-2. Open Command Prompt in this folder and run:
+   python -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
 
-```bat
-python -m pip install -r requirements.txt
-```
+2. Run the app:
 
-## Start the app
+   uvicorn app.main:app --reload
 
-Double-click `run_app.bat`, or run:
+3. Open http://localhost:8000/clock to see the digital clock.
 
-```bat
-python -m streamlit run app.py
-```
+Docker:
 
-The dashboard opens automatically at `http://localhost:8501`.
+   docker build -t sales-dashboard .
+   docker run -p 8000:8000 sales-dashboard
 
-## CSV format
-
-Required columns: `Product`, `Category`, `Sales`, `Profit`.
-
-Optional columns: `Month` (for example, `January`) or `Date` (for example, `2026-08-01`). When a date is provided, the app derives the month automatically.
-
-Use the sidebar to upload a CSV, narrow the period and categories, set a sales target, and export the selected transaction view.
